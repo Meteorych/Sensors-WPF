@@ -20,5 +20,10 @@ namespace Sensors_WPF__.NET_03._1_
         {
             InitializeComponent();
         }
+
+        private void CreateSensorButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
