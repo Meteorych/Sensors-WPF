@@ -8,8 +8,17 @@
         Title="SensorWindow" Height="300" Width="450">
     <Grid HorizontalAlignment="Center" Margin="0,0,0,-6">
         <TextBox x:Name="SensorInfo" HorizontalAlignment="Center" Height="175" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="450"/>
-        <Button HorizontalAlignment="Center" Height="52" Margin="0,208,0,0" VerticalAlignment="Top" Width="198" Click="Button_Click">
-            <TextBlock TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" TextAlignment="Center" Margin="0,15,0,0"><Run Text="Change mode"/><LineBreak/><Run/></TextBlock>
+        <Button HorizontalAlignment="Left" Margin="50,178,0,0" VerticalAlignment="Top" Height="39" Width="65">
+            <TextBlock TextWrapping="Wrap" TextAlignment="Center"><Run Text="Calibration    Mode"/><LineBreak/><Run/></TextBlock>
+        </Button>
+        <Button HorizontalAlignment="Left" Margin="50,227,0,0" VerticalAlignment="Top" Height="39" Width="65">
+            <TextBlock TextWrapping="Wrap"><Run Text="Sleep Mode"/><LineBreak/><Run/></TextBlock>
+        </Button>
+        <Button HorizontalAlignment="Left" Margin="140,204,0,0" VerticalAlignment="Top" Height="39" Width="65">
+            <TextBlock TextWrapping="Wrap" Text="Work mode"/>
+        </Button>
+        <Button HorizontalAlignment="Left" Margin="341,203,0,0" VerticalAlignment="Top" Height="39" Width="65">
+            <TextBlock TextWrapping="Wrap" TextAlignment="Center" Text="Back to main menu"/>
         </Button>
 
     </Grid>

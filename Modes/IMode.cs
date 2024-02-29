@@ -2,8 +2,8 @@
 
 namespace Sensors_WPF__.NET_03._1_.Modes
 {
-    public abstract class AbstractMode
+    public interface IMode
     {
-        public abstract void DoWork(AbstractSensor sensor);
+        public void DoWork(AbstractSensor sensor);
     }
 }
