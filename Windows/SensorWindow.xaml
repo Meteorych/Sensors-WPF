@@ -17,7 +17,7 @@
         <Button HorizontalAlignment="Left" Margin="140,204,0,0" VerticalAlignment="Top" Height="39" Width="65">
             <TextBlock TextWrapping="Wrap" Text="Work mode"/>
         </Button>
-        <Button HorizontalAlignment="Left" Margin="341,203,0,0" VerticalAlignment="Top" Height="39" Width="65">
+        <Button HorizontalAlignment="Left" Margin="286,204,0,0" VerticalAlignment="Top" Height="39" Width="130">
             <TextBlock TextWrapping="Wrap" TextAlignment="Center" Text="Back to main menu"/>
         </Button>
 
