@@ -2,9 +2,15 @@
 
 namespace Sensors_WPF__.NET_03._1_.Modes
 {
-    class CalibrationMode : IMode
+    class CalibrationMode : AbstractMode
     {
-        public void DoWork(AbstractSensor sensor)
+        public override string Name => "Calibration Mode";
+
+        public CalibrationMode()
+        {
+
+        }
+        public override void DoWork(AbstractSensor sensor)
         {
 
         }

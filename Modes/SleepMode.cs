@@ -2,9 +2,15 @@
 
 namespace Sensors_WPF__.NET_03._1_.Modes
 {
-    class SleepMode : IMode
+    class SleepMode : AbstractMode
     {
-        public void DoWork(AbstractSensor sensor)
+        public override string Name => "Sleep Mode";
+
+        public SleepMode()
+        {
+
+        }
+        public override void DoWork(AbstractSensor sensor)
         {
 
         }

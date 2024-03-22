@@ -11,6 +11,6 @@
                 VerticalAlignment="Top" Height="60" Width="132" Click="CreateSensorButton_Click" FontSize="16">
             <TextBlock TextWrapping="Wrap" Text="Create sensor"/>
         </Button>
-        <DataGrid HorizontalAlignment="Left" Height="324" Margin="65,35,0,0" VerticalAlignment="Top" Width="690" d:ItemsSource="{d:SampleData ItemCount=5}" FontSize="16"/>
+        <DataGrid Height="349" Margin="0,10,0,0" VerticalAlignment="Top" d:ItemsSource="{d:SampleData ItemCount=5}" FontSize="16"/>
     </Grid>
 </Window>

@@ -2,11 +2,17 @@
 
 namespace Sensors_WPF__.NET_03._1_.Modes
 {
-    class WorkMode : IMode
+    class WorkMode : AbstractMode
     {
-        public void DoWork(AbstractSensor sensor)
+        public override string Name => "Work Mode";
+
+        public WorkMode()
         {
-            
+
+        }
+        public override void DoWork(AbstractSensor sensor)
+        {
+             
         }
     }
 }
