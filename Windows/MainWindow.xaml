@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Sensors_WPF__.NET_03._1_"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" d:DataContext="{d:DesignInstance }">
+        Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Button x:Name="CreateSensorButton" HorizontalAlignment="Left" Margin="344,364,0,0" 
                 VerticalAlignment="Top" Height="60" Width="132" Click="CreateSensorButton_Click" FontSize="16">

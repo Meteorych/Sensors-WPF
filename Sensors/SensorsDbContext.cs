@@ -13,16 +13,12 @@ namespace Sensors_WPF__.NET_03._1_.Sensors
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
-             modelBuilder.Entity<Sensor>()
-                    .HasKey(s => s.SensorId);
-            
-
-
-            modelBuilder.Entity<Sensor>().HasData(
-                new Sensor { SensorType = "Sensor №1" },
-                new Sensor { SensorType = "Sensor №2" },
-                new Sensor {SensorType = "Sensor №3"}
+            modelBuilder.Entity<Sensor>().HasData(new[]
+            {
+                new Sensor {SensorId = 1, SensorType = "Sensor №1" },
+                new Sensor {SensorId = 2, SensorType = "Sensor №2" },
+                new Sensor {SensorId = 3, SensorType = "Sensor №3"}
+            }
             );
 
 

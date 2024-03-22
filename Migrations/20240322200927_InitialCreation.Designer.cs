@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Sensors_WPF__.NET_03._1_.Sensors;
 
@@ -10,9 +11,11 @@ using Sensors_WPF__.NET_03._1_.Sensors;
 namespace Sensors_WPF__.NET_03._1_.Migrations
 {
     [DbContext(typeof(SensorsDbContext))]
-    partial class SensorsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240322200927_InitialCreation")]
+    partial class InitialCreation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

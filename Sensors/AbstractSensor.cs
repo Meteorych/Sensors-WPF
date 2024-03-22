@@ -14,6 +14,8 @@ namespace Sensors_WPF__.NET_03._1_.Sensors
         public virtual IMode CurrentState { get; set; }
 
         public string SensorType { get; set; }
+
+
         public abstract void Request();
 
     }
