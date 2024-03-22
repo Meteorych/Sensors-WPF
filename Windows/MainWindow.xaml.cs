@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows;
 using Sensors_WPF__.NET_03._1_.Sensors;
+using Sensors_WPF__.NET_03._1_.ViewModels;
 
 
 namespace Sensors_WPF__.NET_03._1_.Windows
@@ -10,13 +11,11 @@ namespace Sensors_WPF__.NET_03._1_.Windows
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly SensorsDbContext _dbContext;
 
         public MainWindow()
         {
             InitializeComponent();
-            _dbContext = new SensorsDbContext();
-            DataContext = _dbContext;
+            DataContext = new MainViewModel();
         }
 
 
