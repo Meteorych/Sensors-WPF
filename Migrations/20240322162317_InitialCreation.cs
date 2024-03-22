@@ -5,7 +5,7 @@
 namespace Sensors_WPF__.NET_03._1_.Migrations
 {
     /// <inheritdoc />
-    public partial class InititialCreation : Migration
+    public partial class InitialCreation : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -14,9 +14,9 @@ namespace Sensors_WPF__.NET_03._1_.Migrations
                 name: "Modes",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Discriminator = table.Column<string>(type: "TEXT", maxLength: 21, nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Discriminator = table.Column<string>(type: "nvarchar(21)", maxLength: 21, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -27,10 +27,10 @@ namespace Sensors_WPF__.NET_03._1_.Migrations
                 name: "Sensors",
                 columns: table => new
                 {
-                    SensorId = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    AbstractModeId = table.Column<int>(type: "INTEGER", nullable: false),
-                    SensorType = table.Column<string>(type: "TEXT", nullable: false)
+                    SensorId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    AbstractModeId = table.Column<int>(type: "int", nullable: false),
+                    SensorType = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {

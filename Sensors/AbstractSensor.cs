@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Sensors_WPF__.NET_03._1_.Modes;
 
 namespace Sensors_WPF__.NET_03._1_.Sensors
@@ -6,9 +7,13 @@ namespace Sensors_WPF__.NET_03._1_.Sensors
     public abstract class AbstractSensor
     {
         [Key]
-        public int SensorId { get; private set; }
-        public virtual AbstractMode AbstractMode { get; set; }
-        public string SensorType { get; private set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int SensorId { get; set; }
+
+        [NotMapped]
+        public virtual IMode CurrentState { get; set; }
+
+        public string SensorType { get; set; }
         public abstract void Request();
 
     }

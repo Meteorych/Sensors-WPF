@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Sensors_WPF__.NET_03._1_"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" d:DataContext="{d:DesignInstance }">
     <Grid>
         <Button x:Name="CreateSensorButton" HorizontalAlignment="Left" Margin="344,364,0,0" 
                 VerticalAlignment="Top" Height="60" Width="132" Click="CreateSensorButton_Click" FontSize="16">
             <TextBlock TextWrapping="Wrap" Text="Create sensor"/>
         </Button>
-        <DataGrid Height="349" Margin="0,10,0,0" VerticalAlignment="Top" d:ItemsSource="{d:SampleData ItemCount=5}" FontSize="16"/>
+        <DataGrid Height="349" Margin="0,10,0,0" VerticalAlignment="Top" d:ItemsSource="{Binding Sensors}" FontSize="16"/>
     </Grid>
 </Window>
