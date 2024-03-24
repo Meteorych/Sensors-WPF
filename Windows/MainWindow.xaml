@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:viewmodels="clr-namespace:Sensors_WPF__.NET_03._1_.ViewModels"
         mc:Ignorable="d"
-        Title="MainWindow" Height="550" Width="800" >
+        Title="MainWindow" Height="500" Width="800" >
     <Grid>
         <Button x:Name="CreateSensorButton" HorizontalAlignment="Center" Margin="0,364,0,0" 
                 VerticalAlignment="Top" Height="77" Width="187" Click="CreateSensorButton_Click" FontSize="16">
