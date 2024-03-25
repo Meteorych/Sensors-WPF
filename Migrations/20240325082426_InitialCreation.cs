@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -16,9 +17,9 @@ namespace Sensors_WPF__.NET_03._1_.Migrations
                 name: "Sensors",
                 columns: table => new
                 {
-                    SensorId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    SensorType = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    SensorId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    SensorType = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    TimeInterval = table.Column<TimeSpan>(type: "time", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -27,12 +28,12 @@ namespace Sensors_WPF__.NET_03._1_.Migrations
 
             migrationBuilder.InsertData(
                 table: "Sensors",
-                columns: new[] { "SensorId", "SensorType" },
+                columns: new[] { "SensorId", "SensorType", "TimeInterval" },
                 values: new object[,]
                 {
-                    { 1, "Sensor №1" },
-                    { 2, "Sensor №2" },
-                    { 3, "Sensor №3" }
+                    { new Guid("2e3e0618-291c-4226-8414-bdd8c6d5bfcc"), "Sensor №1", new TimeSpan(0, 0, 0, 5, 0) },
+                    { new Guid("61311d52-f34a-465d-9f1e-93038e303aa3"), "Sensor №2", new TimeSpan(0, 0, 0, 2, 0) },
+                    { new Guid("a7fb2d25-1b73-47e8-a890-0964d4d9a44c"), "Sensor №3", new TimeSpan(0, 0, 0, 4, 0) }
                 });
         }
 

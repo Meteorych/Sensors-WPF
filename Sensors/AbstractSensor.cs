@@ -10,9 +10,10 @@ namespace Sensors_WPF__.NET_03._1_.Sensors
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int SensorId { get; set; }
-
+        public Guid SensorId { get; set; }
+        
         public string SensorType { get; set; }
+        public TimeSpan TimeInterval { get; set; }
 
         [NotMapped]
         public string CurrentState => _currentState.GetType().ToString().Split(".")[^1];

@@ -21,7 +21,7 @@ namespace Sensors_WPF__.NET_03._1_.Windows
 
         private void CreateSensorButton_Click(object sender, RoutedEventArgs e)
         {
-            var createSensorWindow = new SensorCreatingWindow();
+            var createSensorWindow = new SensorCreatingWindow(new SensorsDbContext());
             createSensorWindow.Show();
         }
 
