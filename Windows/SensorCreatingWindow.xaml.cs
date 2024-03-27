@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Sensors_WPF__.NET_03._1_.Sensors;
+using Sensors_WPF__.NET_03._1_.ViewModels;
 
 namespace Sensors_WPF__.NET_03._1_.Windows
 {
@@ -21,11 +22,13 @@ namespace Sensors_WPF__.NET_03._1_.Windows
     /// </summary>
     public partial class SensorCreatingWindow : Window
     {
-        private readonly SensorsDbContext _dbContext;
-        public SensorCreatingWindow(SensorsDbContext dbContext)
+
+        private readonly MainViewModel _mainViewModel;
+
+        public SensorCreatingWindow(MainViewModel viewModel)
         {
             InitializeComponent();
-            _dbContext = dbContext;
+            _mainViewModel = viewModel;
         }
 
         private void Cancel_Button_Click(object sender, RoutedEventArgs e)
@@ -38,14 +41,17 @@ namespace Sensors_WPF__.NET_03._1_.Windows
             if (string.IsNullOrEmpty(SensorType.Text))
             {
                 MessageBox.Show("Enter the sensor type", "Sensor type is wrong");
+                return;
             }
 
             if (!int.TryParse(Interval.Text, out var intervalInt))
             {
                 MessageBox.Show("Provide working timespan interval", "Interval value is wrong");
+                return;
             }
 
-            _dbContext.Add(new Sensor(){SensorType = SensorType.Text, TimeInterval = TimeSpan.FromSeconds(intervalInt)});
+            _mainViewModel.AddSensor(new Sensor(){SensorType = SensorType.Text, TimeInterval = TimeSpan.FromSeconds(intervalInt)});
+            Close();
         }
 
         

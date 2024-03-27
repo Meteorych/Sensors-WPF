@@ -10,6 +10,18 @@
                 VerticalAlignment="Top" Height="77" Width="187" Click="CreateSensorButton_Click" FontSize="16">
             <TextBlock TextWrapping="Wrap" Text="Create sensor"/>
         </Button>
-        <DataGrid Height="349" Margin="0,10,0,0" VerticalAlignment="Top" d:DataContext="{d:DesignInstance Type=viewmodels:MainViewModel}" ItemsSource="{Binding Sensors}" FontSize="16" ColumnWidth="*"/>
+        <DataGrid Height="349" Margin="0,10,0,0" VerticalAlignment="Top" CanUserAddRows="False" d:DataContext="{d:DesignInstance Type=viewmodels:MainViewModel}" ItemsSource="{Binding Sensors}" FontSize="16" ColumnWidth="*">
+            <DataGrid.Columns>
+                <!-- Button column for deleting sensor -->
+                <DataGridTemplateColumn Width="100">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Delete" Click="DeleteButton_Click"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <!-- Other columns for sensor data -->
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>
