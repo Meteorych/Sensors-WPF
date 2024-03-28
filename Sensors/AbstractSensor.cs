@@ -40,7 +40,7 @@ public abstract class AbstractSensor : INotifyPropertyChanged
 
     public void ChangeMode()
     {
-        _currentState.ChangeState(this);
+        _currentState.ChangeMode(this);
         CurrentStateName = _currentState.GetType().Name;
     }
 
