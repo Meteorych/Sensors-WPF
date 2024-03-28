@@ -16,7 +16,11 @@
                 <DataGridTemplateColumn Width="100">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="Delete" Click="DeleteButton_Click"/>
+                            <StackPanel>
+                                <Button Content="Delete" Click="DeleteButton_Click"/>
+                                <Button Content="Change Mode" Click="ChangeModeButton_Click"/>
+                            </StackPanel>
+                            
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

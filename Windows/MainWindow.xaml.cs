@@ -31,5 +31,15 @@ namespace Sensors_WPF__.NET_03._1_.Windows
         {
             if (sender is Button button) _viewModel.DeleteSensor(button.DataContext as Sensor ?? throw new InvalidOperationException());
         }
+
+        private void ChangeModeButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is Button button)
+            {
+                _viewModel.Sensors.FirstOrDefault(button.DataContext as Sensor ??
+                                                  throw new InvalidOperationException()).ChangeMode();
+                
+            }
+        }
     }
 }

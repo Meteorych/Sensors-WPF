@@ -12,5 +12,10 @@ namespace Sensors_WPF__.NET_03._1_.Modes
         {
 
         }
+
+        public void ChangeState(AbstractSensor sensor)
+        {
+            sensor.Calibrate();
+        }
     }
 }
