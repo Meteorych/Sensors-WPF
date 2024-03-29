@@ -49,14 +49,12 @@ namespace Sensors_WPF__.NET_03._1_.Windows
         {
             if (sender is not Button button) return;
 
-            if (button.DataContext is Sensor sensor)
-            {
-                var sensorForData = _viewModel.Sensors.First(x => sensor.SensorId == x.SensorId);
-                var sensorDataWindow = new SensorDataWindow(sensorForData);
-                sensorDataWindow.Show();
-            }
-            
-            
+            if (button.DataContext is not Sensor sensor) return;
+            var sensorForData = _viewModel.Sensors.First(x => sensor.SensorId == x.SensorId);
+            var sensorDataWindow = new SensorDataWindow(sensorForData);
+            sensorDataWindow.ShowDialog();
+
+
         }
     }
 }
