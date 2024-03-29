@@ -24,7 +24,7 @@ namespace Sensors_WPF__.NET_03._1_.Windows
         {
             _timer = new DispatcherTimer
             {
-                Interval = _sensor.TimeInterval
+                Interval = _sensor.CurrentStateName == "WorkMode" ? _sensor.TimeInterval : TimeSpan.FromSeconds(1)
             };
             _timer.Tick += SensorAction;
             _timer.Start();

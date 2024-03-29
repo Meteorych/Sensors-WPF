@@ -5,12 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Sensors_WPF__.NET_03._1_"
         mc:Ignorable="d"
-        Title="SensorDataWindow" Height="300" Width="450">
-    <Grid HorizontalAlignment="Center" Margin="0,0,0,-6">
-        <TextBox x:Name="SensorData" HorizontalAlignment="Center" Height="175" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="450"/>
-        <Button HorizontalAlignment="Left" Margin="286,204,0,0" VerticalAlignment="Top" Height="39" Width="130">
-            <TextBlock TextWrapping="Wrap" TextAlignment="Center" Text="Back to main menu"/>
-        </Button>
-
+        Title="SensorDataWindow" ResizeMode="NoResize" Height="400" Width="550" Background="LightGray">
+    <Grid HorizontalAlignment="Center" Height="300" Width="450">
+        <TextBox x:Name="SensorData" TextWrapping="Wrap" VerticalAlignment="Top" 
+                 Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType=Grid}}" Width="{Binding ActualWidth, RelativeSource= {RelativeSource AncestorType=Grid}}"/>
     </Grid>
 </Window>
