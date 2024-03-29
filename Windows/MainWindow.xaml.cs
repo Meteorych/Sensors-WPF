@@ -34,11 +34,14 @@ namespace Sensors_WPF__.NET_03._1_.Windows
 
         private void ChangeModeButton_Click(object sender, RoutedEventArgs e)
         {
-            if (sender is Button button)
+            if (sender is not Button button) return;
+            if (button.DataContext is Sensor sensor)
             {
-                _viewModel.Sensors.FirstOrDefault(button.DataContext as Sensor ??
-                                                  throw new InvalidOperationException()).ChangeMode();
-                
+                _viewModel.Sensors.FirstOrDefault(x => sensor.SensorId == x.SensorId)?.ChangeMode();
+            }
+            else
+            {
+                throw new InvalidOperationException();
             }
         }
     }

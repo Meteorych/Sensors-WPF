@@ -18,17 +18,16 @@ public abstract class AbstractSensor : INotifyPropertyChanged
     public TimeSpan TimeInterval { get; set; }
 
     private string _currentStateName;
+
     [NotMapped]
     public string CurrentStateName
     {
         get => _currentStateName;
         set
         {
-            if (_currentStateName != value)
-            {
-                _currentStateName = value;
-                OnPropertyChanged(nameof(CurrentStateName));
-            }
+            if (_currentStateName == value) return;
+            _currentStateName = value;
+            OnPropertyChanged(nameof(CurrentStateName));
         }
     }
 
@@ -50,7 +49,7 @@ public abstract class AbstractSensor : INotifyPropertyChanged
 
     // Other methods remain unchanged
 
-    public event PropertyChangedEventHandler PropertyChanged;
+    public event PropertyChangedEventHandler? PropertyChanged;
     protected virtual void OnPropertyChanged(string propertyName)
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
