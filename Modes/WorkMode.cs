@@ -1,17 +1,14 @@
-﻿using Sensors_WPF__.NET_03._1_.Sensors;
+﻿using System.Windows.Controls;
+using Sensors_WPF__.NET_03._1_.Sensors;
 
 namespace Sensors_WPF__.NET_03._1_.Modes
 {
-    class WorkMode : IMode
+    public class WorkMode : IMode
     {
-
-        public WorkMode()
+        public void DoWork(AbstractSensor sensor, TextBox textBox)
         {
-
-        }
-        public void DoWork(AbstractSensor sensor)
-        {
-             
+            var randNumber = new Random();
+            textBox.Text += $"{randNumber.Next()} ";
         }
 
         public void ChangeMode(AbstractSensor sensor)

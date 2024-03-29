@@ -47,12 +47,16 @@ namespace Sensors_WPF__.NET_03._1_.Windows
 
         private void GetValuesButton_Click(object sender, RoutedEventArgs e)
         {
-            //if (sender is not Button button) return;
+            if (sender is not Button button) return;
 
-            //if (button.DataContext is Sensor sensor)
-            //{
-            //    _viewModel.Sensors.Se
-            //}
+            if (button.DataContext is Sensor sensor)
+            {
+                var sensorForData = _viewModel.Sensors.First(x => sensor.SensorId == x.SensorId);
+                var sensorDataWindow = new SensorDataWindow(sensorForData);
+                sensorDataWindow.Show();
+            }
+            
+            
         }
     }
 }

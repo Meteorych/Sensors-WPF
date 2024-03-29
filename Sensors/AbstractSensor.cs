@@ -2,13 +2,14 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Windows.Controls;
 using Sensors_WPF__.NET_03._1_.Modes;
 
 namespace Sensors_WPF__.NET_03._1_.Sensors;
 
 public abstract class AbstractSensor : INotifyPropertyChanged
 {
-    private IMode _currentState;
+    protected IMode CurrentState;
 
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -17,35 +18,39 @@ public abstract class AbstractSensor : INotifyPropertyChanged
     public string SensorType { get; set; }
     public TimeSpan TimeInterval { get; set; }
 
-    private string _currentStateName;
+    protected string CurrentStateNameValue;
 
     [NotMapped]
     public string CurrentStateName
     {
-        get => _currentStateName;
+        get => CurrentStateNameValue;
         set
         {
-            if (_currentStateName == value) return;
-            _currentStateName = value;
+            if (CurrentStateNameValue == value) return;
+            CurrentStateNameValue = value;
             OnPropertyChanged(nameof(CurrentStateName));
         }
     }
 
+    public virtual void Request(TextBox textBox)
+    {
+        CurrentState.DoWork(this, textBox);
+    }
     protected AbstractSensor()
     {
-        _currentState = new SleepMode();
-        CurrentStateName = _currentState.GetType().Name;
+        CurrentState = new SleepMode();
+        CurrentStateName = CurrentState.GetType().Name;
     }
 
     public void ChangeMode()
     {
-        _currentState.ChangeMode(this);
-        CurrentStateName = _currentState.GetType().Name;
+        CurrentState.ChangeMode(this);
+        CurrentStateName = CurrentState.GetType().Name;
     }
 
-    public void Calibrate() => _currentState = new CalibrationMode();
-    public void Sleep() => _currentState = new SleepMode();
-    public void Start() => _currentState = new WorkMode();
+    public void Calibrate() => CurrentState = new CalibrationMode();
+    public void Sleep() => CurrentState = new SleepMode();
+    public void Start() => CurrentState = new WorkMode();
 
     // Other methods remain unchanged
 
@@ -55,5 +60,4 @@ public abstract class AbstractSensor : INotifyPropertyChanged
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 
-    public abstract void Request();
 }

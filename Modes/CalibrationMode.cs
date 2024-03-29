@@ -1,17 +1,15 @@
-﻿using Sensors_WPF__.NET_03._1_.Sensors;
+﻿using System.Windows.Controls;
+using Sensors_WPF__.NET_03._1_.Sensors;
 
 namespace Sensors_WPF__.NET_03._1_.Modes
 {
-    class CalibrationMode : IMode
+    public class CalibrationMode : IMode
     {
-
-        public CalibrationMode()
+        private int _calibrationNumber = 0;
+        public void DoWork(AbstractSensor sensor, TextBox textBox)
         {
-
-        }
-        public void DoWork(AbstractSensor sensor)
-        {
-
+            textBox.Text += $"{_calibrationNumber} ";
+            _calibrationNumber += 1;
         }
 
         public void ChangeMode(AbstractSensor sensor)
