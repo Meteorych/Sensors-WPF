@@ -44,5 +44,15 @@ namespace Sensors_WPF__.NET_03._1_.Windows
                 throw new InvalidOperationException();
             }
         }
+
+        private void GetValuesButton_Click(object sender, RoutedEventArgs e)
+        {
+            //if (sender is not Button button) return;
+
+            //if (button.DataContext is Sensor sensor)
+            //{
+            //    _viewModel.Sensors.Se
+            //}
+        }
     }
 }
