@@ -3,37 +3,41 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
 
-namespace Sensors_WPF__.NET_03._1_.Windows
+namespace Sensors_WPF__.NET_03._1_.Windows;
+
+/// <summary>
+/// Interaction logic for SensorWindow.xaml
+/// </summary>
+public partial class SensorDataWindow : Window
 {
-    /// <summary>
-    /// Interaction logic for SensorWindow.xaml
-    /// </summary>
-    public partial class SensorDataWindow : Window
+    private DispatcherTimer _timer;
+    private readonly Sensor _sensor;
+
+    public SensorDataWindow(Sensor sensor)
     {
-        private DispatcherTimer _timer;
-        private readonly Sensor _sensor;
+        _sensor = sensor;
+        InitializeComponent();
+        Loaded += SensorDataWindow_Loaded;
+        Closed += SensorDataWindow_Closed;
+    }
 
-        public SensorDataWindow(Sensor sensor)
+    private void SensorDataWindow_Loaded(object sender, RoutedEventArgs e)
+    {
+        _timer = new DispatcherTimer
         {
-            _sensor = sensor;
-            InitializeComponent();
-            Loaded += SensorDataWindow_Loaded;
-        }
+            Interval = _sensor.CurrentStateName == "WorkMode" ? _sensor.TimeInterval : TimeSpan.FromSeconds(1)
+        };
+        _timer.Tick += SensorAction;
+        _timer.Start();
+    }
 
-        private void SensorDataWindow_Loaded(object sender, RoutedEventArgs e)
-        {
-            _timer = new DispatcherTimer
-            {
-                Interval = _sensor.CurrentStateName == "WorkMode" ? _sensor.TimeInterval : TimeSpan.FromSeconds(1)
-            };
-            _timer.Tick += SensorAction;
-            _timer.Start();
-            
-        }
+    private void SensorDataWindow_Closed(object? sender, EventArgs e)
+    {
+        _sensor.LastMeasurementReceived();
+    }
 
-        private void SensorAction(object? sender, EventArgs e)
-        {
-            _sensor.Request(SensorData);
-        }
+    private void SensorAction(object? sender, EventArgs e)
+    {
+        _sensor.Request(SensorData);
     }
 }

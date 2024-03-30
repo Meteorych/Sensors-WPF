@@ -1,12 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Windows.Controls;
 using Sensors_WPF__.NET_03._1_.Sensors;
+using Sensors_WPF__.NET_03._1_.Sensors.SensorsObservation;
 
-namespace Sensors_WPF__.NET_03._1_.Modes
+namespace Sensors_WPF__.NET_03._1_.Modes;
+
+public interface IMode
 {
-    public interface IMode
-    {
-        public void DoWork(AbstractSensor sensor, TextBox textBox);
-        public void ChangeMode(AbstractSensor sensor);
-    }
+    public void DoWork(AbstractSensor sensor, TextBox textBox, out Measurement value);
+    public void ChangeMode(AbstractSensor sensor);
 }

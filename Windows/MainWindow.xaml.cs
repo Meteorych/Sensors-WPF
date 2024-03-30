@@ -5,56 +5,55 @@ using Sensors_WPF__.NET_03._1_.Sensors;
 using Sensors_WPF__.NET_03._1_.ViewModels;
 
 
-namespace Sensors_WPF__.NET_03._1_.Windows
+namespace Sensors_WPF__.NET_03._1_.Windows;
+
+/// <summary>
+/// Interaction logic for MainWindow.xaml
+/// </summary>
+public partial class MainWindow : Window
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window
+    private readonly MainViewModel _viewModel;  
+    public MainWindow()
     {
-        private readonly MainViewModel _viewModel;  
-        public MainWindow()
+        InitializeComponent();
+        _viewModel = new MainViewModel();
+        DataContext = _viewModel;
+    }
+
+
+    private void CreateSensorButton_Click(object sender, RoutedEventArgs e)
+    {
+        var createSensorWindow = new SensorCreatingWindow(_viewModel);
+        createSensorWindow.Show();
+    }
+
+    private void DeleteButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (sender is Button button) _viewModel.DeleteSensor(button.DataContext as Sensor ?? throw new InvalidOperationException());
+    }
+
+    private void ChangeModeButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (sender is not Button button) return;
+        if (button.DataContext is Sensor sensor)
         {
-            InitializeComponent();
-            _viewModel = new MainViewModel();
-            DataContext = _viewModel;
+            _viewModel.Sensors.FirstOrDefault(x => sensor.SensorId == x.SensorId)?.ChangeMode();
         }
-
-
-        private void CreateSensorButton_Click(object sender, RoutedEventArgs e)
+        else
         {
-            var createSensorWindow = new SensorCreatingWindow(_viewModel);
-            createSensorWindow.Show();
+            throw new InvalidOperationException();
         }
+    }
 
-        private void DeleteButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (sender is Button button) _viewModel.DeleteSensor(button.DataContext as Sensor ?? throw new InvalidOperationException());
-        }
+    private void GetValuesButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (sender is not Button button) return;
 
-        private void ChangeModeButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (sender is not Button button) return;
-            if (button.DataContext is Sensor sensor)
-            {
-                _viewModel.Sensors.FirstOrDefault(x => sensor.SensorId == x.SensorId)?.ChangeMode();
-            }
-            else
-            {
-                throw new InvalidOperationException();
-            }
-        }
-
-        private void GetValuesButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (sender is not Button button) return;
-
-            if (button.DataContext is not Sensor sensor) return;
-            var sensorForData = _viewModel.Sensors.First(x => sensor.SensorId == x.SensorId);
-            var sensorDataWindow = new SensorDataWindow(sensorForData);
-            sensorDataWindow.ShowDialog();
+        if (button.DataContext is not Sensor sensor) return;
+        var sensorForData = _viewModel.Sensors.First(x => sensor.SensorId == x.SensorId);
+        var sensorDataWindow = new SensorDataWindow(sensorForData);
+        sensorDataWindow.ShowDialog();
 
 
-        }
     }
 }

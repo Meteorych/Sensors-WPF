@@ -15,45 +15,44 @@ using System.Windows.Shapes;
 using Sensors_WPF__.NET_03._1_.Sensors;
 using Sensors_WPF__.NET_03._1_.ViewModels;
 
-namespace Sensors_WPF__.NET_03._1_.Windows
+namespace Sensors_WPF__.NET_03._1_.Windows;
+
+/// <summary>
+/// Interaction logic for SensorCreatingWindow.xaml
+/// </summary>
+public partial class SensorCreatingWindow : Window
 {
-    /// <summary>
-    /// Interaction logic for SensorCreatingWindow.xaml
-    /// </summary>
-    public partial class SensorCreatingWindow : Window
+
+    private readonly MainViewModel _mainViewModel;
+
+    public SensorCreatingWindow(MainViewModel viewModel)
     {
+        InitializeComponent();
+        _mainViewModel = viewModel;
+    }
 
-        private readonly MainViewModel _mainViewModel;
+    private void Cancel_Button_Click(object sender, RoutedEventArgs e)
+    {
+        Close();
+    }
 
-        public SensorCreatingWindow(MainViewModel viewModel)
+    private void CreateButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (string.IsNullOrEmpty(SensorType.Text))
         {
-            InitializeComponent();
-            _mainViewModel = viewModel;
+            MessageBox.Show("Enter the sensor type", "Sensor type is wrong");
+            return;
         }
 
-        private void Cancel_Button_Click(object sender, RoutedEventArgs e)
+        if (!int.TryParse(Interval.Text, out var intervalInt))
         {
-            Close();
+            MessageBox.Show("Provide working timespan interval", "Interval value is wrong");
+            return;
         }
 
-        private void CreateButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (string.IsNullOrEmpty(SensorType.Text))
-            {
-                MessageBox.Show("Enter the sensor type", "Sensor type is wrong");
-                return;
-            }
-
-            if (!int.TryParse(Interval.Text, out var intervalInt))
-            {
-                MessageBox.Show("Provide working timespan interval", "Interval value is wrong");
-                return;
-            }
-
-            _mainViewModel.AddSensor(new Sensor(){SensorType = SensorType.Text, TimeInterval = TimeSpan.FromSeconds(intervalInt)});
-            Close();
-        }
+        _mainViewModel.AddSensor(new Sensor(){SensorType = SensorType.Text, TimeInterval = TimeSpan.FromSeconds(intervalInt)});
+        Close();
+    }
 
         
-    }
 }
