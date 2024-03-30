@@ -2,11 +2,7 @@
 
 class SensorObserver : IObserver<Measurement>
 {
-    public void OnNext(Measurement value)
-    {
-    }
+    public void OnNext(Measurement value) { }
     public void OnError(Exception ex) { }
-    public void OnCompleted()
-    {
-    }
+    public void OnCompleted() { }
 }

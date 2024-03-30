@@ -13,13 +13,13 @@ public abstract class AbstractSensor : INotifyPropertyChanged, IObservable<Measu
     protected IMode CurrentState;
     protected HashSet<IObserver<Measurement>> Observers = [];
     [Key]
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public Guid SensorId { get; set; }
+    public Guid SensorId { get; private set; }
 
     public string SensorType { get; set; }
     public TimeSpan TimeInterval { get; set; }
 
     protected string CurrentStateNameValue;
+    
 
     [NotMapped]
     public string CurrentStateName
@@ -35,6 +35,7 @@ public abstract class AbstractSensor : INotifyPropertyChanged, IObservable<Measu
 
     protected AbstractSensor()
     {
+        SensorId = SensorsIDGenerator.GetInstance().GenerateId();
         CurrentState = new SleepMode();
         CurrentStateName = CurrentState.GetType().Name;
     }
