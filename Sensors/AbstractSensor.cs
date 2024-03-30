@@ -10,16 +10,14 @@ namespace Sensors_WPF__.NET_03._1_.Sensors;
 
 public abstract class AbstractSensor : INotifyPropertyChanged, IObservable<Measurement>
 {
+    protected string CurrentStateNameValue;
     protected IMode CurrentState;
     protected HashSet<IObserver<Measurement>> Observers = [];
+
     [Key]
     public Guid SensorId { get; private set; }
-
     public string SensorType { get; set; }
     public TimeSpan TimeInterval { get; set; }
-
-    protected string CurrentStateNameValue;
-    
 
     [NotMapped]
     public string CurrentStateName
@@ -40,6 +38,10 @@ public abstract class AbstractSensor : INotifyPropertyChanged, IObservable<Measu
         CurrentStateName = CurrentState.GetType().Name;
     }
 
+    /// <summary>
+    /// Method for requesting sensor's data and writing it to the provided TextBox.
+    /// </summary>
+    /// <param name="textBox">WPF TextBox for writing provided data.</param>
     public virtual void Request(TextBox textBox)
     {
         CurrentState.DoWork(this, textBox, out var value);
