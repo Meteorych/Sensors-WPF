@@ -6,7 +6,17 @@ namespace Sensors_WPF__.NET_03._1_.Modes;
 
 public class CalibrationMode : IMode
 {
-    private int _calibrationNumber = 0;
+    /// <summary>
+    /// Value that is filled into textBox in this mode.
+    /// </summary>
+    private int _calibrationNumber;
+    
+    /// <summary>
+    /// Do work for sensor in calibration mode. 
+    /// </summary>
+    /// <param name="sensor">Sensor that have calibration mode enabled.</param>
+    /// <param name="textBox"></param>
+    /// <param name="value"></param>
     public void DoWork(AbstractSensor sensor, TextBox textBox, out Measurement value)
     {
         textBox.Text += $"{_calibrationNumber} ";

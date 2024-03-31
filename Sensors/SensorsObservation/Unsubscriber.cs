@@ -1,5 +1,8 @@
 ﻿namespace Sensors_WPF__.NET_03._1_.Sensors.SensorsObservation;
 
+/// <summary>
+/// CLass that is used to unsubscribe and dispose sensors.
+/// </summary>
 internal  sealed class Unsubscriber : IDisposable
 {
     private readonly ISet<IObserver<Measurement>> _observers;

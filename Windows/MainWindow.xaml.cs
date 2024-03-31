@@ -27,9 +27,9 @@ public partial class MainWindow : Window
         createSensorWindow.Show();
     }
 
-    private void DeleteButton_Click(object sender, RoutedEventArgs e)
+    private async void DeleteButton_Click(object sender, RoutedEventArgs e)
     {
-        if (sender is Button button) _viewModel.DeleteSensor(button.DataContext as Sensor ?? throw new InvalidOperationException());
+        if (sender is Button button) await _viewModel.DeleteSensor(button.DataContext as Sensor ?? throw new InvalidOperationException());
     }
 
     private void ChangeModeButton_Click(object sender, RoutedEventArgs e)
@@ -53,7 +53,5 @@ public partial class MainWindow : Window
         var sensorForData = _viewModel.Sensors.First(x => sensor.SensorId == x.SensorId);
         var sensorDataWindow = new SensorDataWindow(sensorForData);
         sensorDataWindow.ShowDialog();
-
-
     }
 }

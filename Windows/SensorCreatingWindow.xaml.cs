@@ -36,7 +36,7 @@ public partial class SensorCreatingWindow : Window
         Close();
     }
 
-    private void CreateButton_Click(object sender, RoutedEventArgs e)
+    private async void CreateButton_Click(object sender, RoutedEventArgs e)
     {
         if (string.IsNullOrEmpty(SensorType.Text))
         {
@@ -50,7 +50,7 @@ public partial class SensorCreatingWindow : Window
             return;
         }
 
-        _mainViewModel.AddSensor(new Sensor(){SensorType = SensorType.Text, TimeInterval = TimeSpan.FromSeconds(intervalInt)});
+        await _mainViewModel.AddSensor(new Sensor(){SensorType = SensorType.Text, TimeInterval = TimeSpan.FromSeconds(intervalInt)});
         Close();
     }
 

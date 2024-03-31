@@ -21,18 +21,26 @@ public class MainViewModel : INotifyPropertyChanged
         }
     }
 
-    public void AddSensor(Sensor newSensor)
+    /// <summary>
+    /// Adding new sensor to db context.
+    /// </summary>
+    /// <param name="newSensor">Sensor that will be added to db context.</param>
+    public async Task AddSensor(Sensor newSensor)
     {
         Sensors.Add(newSensor);
-        _dbContext.Sensors.Add(newSensor);
-        _dbContext.SaveChanges();
+        await _dbContext.Sensors.AddAsync(newSensor);
+        await _dbContext.SaveChangesAsync();
     }
-
-    public void DeleteSensor(Sensor sensorToRemove)
+    
+    /// <summary>
+    /// Delete sensor from db context.
+    /// </summary>
+    /// <param name="sensorToRemove">Sensor to delete.</param>
+    public async Task DeleteSensor(Sensor sensorToRemove)
     {
         Sensors.Remove(sensorToRemove);
         _dbContext.Sensors.Remove(sensorToRemove);
-        _dbContext.SaveChanges();
+        await _dbContext.SaveChangesAsync();
     }
 
     public event PropertyChangedEventHandler? PropertyChanged;

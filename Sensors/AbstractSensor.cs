@@ -10,23 +10,32 @@ namespace Sensors_WPF__.NET_03._1_.Sensors;
 
 public abstract class AbstractSensor : INotifyPropertyChanged, IObservable<Measurement>
 {
-    protected string CurrentStateNameValue;
-    protected IMode CurrentState;
+    /// <summary>
+    /// Name of current mode.
+    /// </summary>
+    protected string CurrentModeNameValue;
+    /// <summary>
+    /// Current mode of sensor.
+    /// </summary>
+    protected IMode CurrentMode;
+    /// <summary>
+    /// Sensor's observers.
+    /// </summary>
     protected HashSet<IObserver<Measurement>> Observers = [];
 
     [Key]
-    public Guid SensorId { get; private set; }
+    public Guid SensorId { get; init; }
     public string SensorType { get; set; }
     public TimeSpan TimeInterval { get; set; }
 
     [NotMapped]
     public string CurrentStateName
     {
-        get => CurrentStateNameValue;
+        get => CurrentModeNameValue;
         set
         {
-            if (CurrentStateNameValue == value) return;
-            CurrentStateNameValue = value;
+            if (CurrentModeNameValue == value) return;
+            CurrentModeNameValue = value;
             OnPropertyChanged(nameof(CurrentStateName));
         }
     }
@@ -34,8 +43,8 @@ public abstract class AbstractSensor : INotifyPropertyChanged, IObservable<Measu
     protected AbstractSensor()
     {
         SensorId = SensorsIDGenerator.GetInstance().GenerateId();
-        CurrentState = new SleepMode();
-        CurrentStateName = CurrentState.GetType().Name;
+        CurrentMode = new SleepMode();
+        CurrentStateName = CurrentMode.GetType().Name;
     }
 
     /// <summary>
@@ -44,7 +53,7 @@ public abstract class AbstractSensor : INotifyPropertyChanged, IObservable<Measu
     /// <param name="textBox">WPF TextBox for writing provided data.</param>
     public virtual void Request(TextBox textBox)
     {
-        CurrentState.DoWork(this, textBox, out var value);
+        CurrentMode.DoWork(this, textBox, out var value);
         Notify(value);
     }
 
@@ -53,8 +62,8 @@ public abstract class AbstractSensor : INotifyPropertyChanged, IObservable<Measu
     /// </summary>
     public void ChangeMode()
     {
-        CurrentState.ChangeMode(this);
-        CurrentStateName = CurrentState.GetType().Name;
+        CurrentMode.ChangeMode(this);
+        CurrentStateName = CurrentMode.GetType().Name;
     }
 
     /// <summary>
@@ -64,8 +73,8 @@ public abstract class AbstractSensor : INotifyPropertyChanged, IObservable<Measu
     {
         if (CurrentStateName == "SleepMode")
         {
-            CurrentState = new CalibrationMode();
-            CurrentStateName = CurrentState.GetType().Name;
+            CurrentMode = new CalibrationMode();
+            CurrentStateName = CurrentMode.GetType().Name;
         }
     }
 
@@ -76,8 +85,8 @@ public abstract class AbstractSensor : INotifyPropertyChanged, IObservable<Measu
     {
         if (CurrentStateName == "WorkMode")
         {
-            CurrentState = new SleepMode();
-            CurrentStateName = CurrentState.GetType().Name;
+            CurrentMode = new SleepMode();
+            CurrentStateName = CurrentMode.GetType().Name;
         }
     }
 
@@ -88,8 +97,8 @@ public abstract class AbstractSensor : INotifyPropertyChanged, IObservable<Measu
     {
         if (CurrentStateName == "CalibrationMode")
         {
-            CurrentState = new WorkMode();
-            CurrentStateName = CurrentState.GetType().Name;
+            CurrentMode = new WorkMode();
+            CurrentStateName = CurrentMode.GetType().Name;
         }
     } 
 
