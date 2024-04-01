@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
+	<EnableWindowsTargeting>true</EnableWindowsTargeting>
     <TargetFramework>net8.0-windows</TargetFramework>
     <RootNamespace>Sensors_WPF__.NET_03._1_</RootNamespace>
     <Nullable>enable</Nullable>
