@@ -6,7 +6,7 @@ namespace Sensors_WPF__.NET_03._1_.Modes;
 
 public class SleepMode : IMode
 {
-    public void DoWork(AbstractSensor sensor, TextBox textBox, out Measurement value)
+    public void DoWork(AbstractSensor sensor, out Measurement value)
     {
         value = new Measurement(0);
     }

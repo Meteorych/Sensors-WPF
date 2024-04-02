@@ -25,7 +25,7 @@ public partial class SensorDataWindow : Window
     {
         _timer = new DispatcherTimer
         {
-            Interval = _sensor.CurrentStateName == "WorkMode" ? _sensor.TimeInterval : TimeSpan.FromSeconds(1)
+            Interval = _sensor.CurrentModeName == "WorkMode" ? _sensor.TimeInterval : TimeSpan.FromSeconds(1)
         };
         _timer.Tick += SensorAction;
         _timer.Start();

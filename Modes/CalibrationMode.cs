@@ -15,11 +15,9 @@ public class CalibrationMode : IMode
     /// Do work for sensor in calibration mode. 
     /// </summary>
     /// <param name="sensor">Sensor that have calibration mode enabled.</param>
-    /// <param name="textBox"></param>
     /// <param name="value"></param>
-    public void DoWork(AbstractSensor sensor, TextBox textBox, out Measurement value)
+    public void DoWork(AbstractSensor sensor, out Measurement value)
     {
-        textBox.Text += $"{_calibrationNumber} ";
         value = new Measurement(_calibrationNumber);
         _calibrationNumber += 1;
     }

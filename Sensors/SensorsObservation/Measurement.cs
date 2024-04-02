@@ -4,4 +4,7 @@
 /// Class for storing value from sensor.
 /// </summary>
 /// <param name="measurementNum">Sensor's value.</param>
-public readonly struct Measurement(int measurementNum);
+public readonly struct Measurement(int measurementNum)
+{
+    public int MeasurementNum => measurementNum;
+};
